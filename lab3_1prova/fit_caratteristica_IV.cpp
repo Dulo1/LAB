@@ -19,14 +19,14 @@ float_t ey[10]={0.03,0.03,0.03,0.03,0.03,0.03,0.03,0.05,0.11,0.33}; // e degli e
 float_t x[10]={50,100,120,150,180,200,250,300,350,400};
 float_t y[10]={0.01,0.03,0.05,0.11,0.22,0.31,0.81,1.83,3.69,6.53};
 float_t ex[10]={2.5,3.6,6.2,6.7,7.4,7.8,9,10.3,14.5,15.6}; // errori oscill
-float_t ey[10]={0.001,0.001,0.001,0.001,0.03,0.03,0.04,0.05,0.07,0.1}; // e degli errori multim
+float_t ey[10]={0.03,0.03,0.03,0.03,0.03,0.03,0.04,0.05,0.07,0.1}; // e degli errori multim
 
 TCanvas *c1 = new TCanvas("c1", "Canvas 1", 800, 600);
 
 
 // create graph
 TGraphErrors *gr = new TGraphErrors(10,x,y,ex,ey);
-gr->SetTitle("Diodo al Si");
+gr->SetTitle("Diodo al Ge");
 
 // draw with options
 gr->SetMarkerStyle(4);
@@ -35,12 +35,13 @@ c1->SetLogy();
 c1->SetGrid();
 gr->GetXaxis()->SetTitle("Voltage (mV)");
 gr->GetYaxis()->SetTitle("Current (mA)");
+c1->SaveAs("diodo_Ge.png");
 
 // define user fit function and fit
 TF1 *f1 = new TF1("f1","[0]*(exp(x/[1])-1)",150,400); //cambiare per Si-Ge
 /*f1->SetParameter(0,1e-6);    // necessario per user defined function
 f1->SetParameter(1,50.);     // necessario per user defined function*/
-f1->SetParameter(0, 1e-6); // Stima iniziale per I0
+f1->SetParameter(0, 1e-9); // Stima iniziale per I0
 f1->SetParameter(1, 25.); // Stima iniziale per Eta*VT
 f1->SetParName(0,"I0");
 f1->SetParName(1,"Eta*VT");
