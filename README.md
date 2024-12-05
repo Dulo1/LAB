@@ -16,6 +16,7 @@ La struttura della repository è organizzata come segue:
 
 Ogni cartella contiene:
 - **Script e codici**: File necessari per l'acquisizione ed elaborazione dei dati.
+
 In alcune sono presenti:
 - **Dati sperimentali**: File con i dati raccolti durante la prova.
 - **Immagini**: Grafici o strumentazione utilizzata
